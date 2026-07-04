@@ -116,7 +116,8 @@ header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid 
 .prod .pimg{position:relative;aspect-ratio:3/4;background:var(--surface);overflow:hidden}
 .prod .pimg .phimg{position:absolute;inset:0;display:grid;place-items:center;color:#c7c7cc;background:repeating-linear-gradient(45deg,#f0f0f0,#f0f0f0 12px,#f4f4f4 12px,#f4f4f4 24px)}
 .prod .tag{position:absolute;top:10px;left:10px;background:var(--red);color:#fff;font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:5px 9px;border-radius:2px}
-.prod .wish{position:absolute;top:8px;right:8px;background:#fff;border:0;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.prod .wish{position:absolute;top:8px;right:8px;background:#fff;border:0;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.12);z-index:2}
+.prod .wish.on svg{fill:var(--red);stroke:var(--red)}
 .prod .pbody{padding:13px 4px 4px}
 .prod .brand{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .prod .nm{font-size:14px;font-weight:600;margin:2px 0 6px;line-height:1.3}
@@ -137,7 +138,8 @@ header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid 
 .brands h2{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(24px,4vw,38px);margin-bottom:8px}
 .brands p{color:var(--muted);font-size:14px;max-width:46ch;margin:0 auto 26px}
 .bchips{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
-.bchip{background:#fff;border:1px solid var(--line);border-radius:3px;height:60px;min-width:128px;display:grid;place-items:center;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#bcbcc2;font-size:13px}
+.bchip{background:#fff;border:1px solid var(--line);border-radius:3px;height:60px;min-width:128px;display:grid;place-items:center;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#55555b;font-size:13px;cursor:pointer;transition:.2s}
+.bchip:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
 
 /* newsletter */
 .news{margin-top:64px;background:var(--ink);color:#fff;border-radius:6px;padding:48px 30px;text-align:center;position:relative;overflow:hidden}
@@ -150,6 +152,27 @@ header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid 
 .nform button{background:var(--red);color:#fff;border:0;border-radius:3px;padding:0 26px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;font-size:13px;cursor:pointer}
 .nform button:hover{background:var(--red-dark)}
 .nok{margin-top:14px;font-size:13.5px;color:#fff;font-weight:700;display:none}
+
+/* whatsapp cta banner */
+.wa-banner{position:relative;margin-top:64px;border-radius:8px;overflow:hidden;min-height:340px;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;isolation:isolate}
+.wa-banner .slide{position:absolute;inset:0;background-size:cover;background-position:center;z-index:-2;opacity:0;animation:waFade 10s infinite}
+.wa-banner .slide:nth-child(1){background-image:url('wa-anim-1.jpg');animation-delay:0s}
+.wa-banner .slide:nth-child(2){background-image:url('wa-anim-2.jpg');animation-delay:5s}
+@keyframes waFade{0%{opacity:0}8%{opacity:1}42%{opacity:1}50%{opacity:0}100%{opacity:0}}
+.wa-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,14,16,.55),rgba(14,14,16,.8));z-index:-1}
+.wa-banner .inner{position:relative;z-index:2;max-width:560px;padding:40px 24px}
+.wa-banner .wa-ico{width:56px;height:56px;border-radius:50%;background:#25D366;display:grid;place-items:center;margin:0 auto 18px;animation:waPulse 1.8s infinite}
+@keyframes waPulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.55)}70%{box-shadow:0 0 0 18px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+.wa-banner h2{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(28px,4.5vw,46px);line-height:1;margin-bottom:10px}
+.wa-banner p{color:#e9e9ec;font-size:14.5px;margin-bottom:24px}
+.wa-nums{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.wa-num{display:inline-flex;align-items:center;gap:9px;background:#25D366;color:#fff;font-weight:800;letter-spacing:.03em;font-size:14px;padding:14px 22px;border-radius:30px;transition:transform .15s,background .2s}
+.wa-num:hover{transform:translateY(-2px);background:#1fb659}
+
+/* floating whatsapp button */
+.wa-float{position:fixed;right:20px;bottom:20px;z-index:60;width:58px;height:58px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.25);cursor:pointer;animation:waPulse 1.8s infinite}
+.wa-float svg{width:30px;height:30px}
+@media(max-width:560px){.wa-float{right:14px;bottom:14px;width:52px;height:52px}}
 
 /* footer */
 footer{margin-top:70px;background:#fff;border-top:1px solid var(--line)}
@@ -203,11 +226,11 @@ footer{margin-top:70px;background:#fff;border-top:1px solid var(--line)}
     </button>
     <a class="logo" href="index.html"><img src="wwab-logo.png" alt="WWAB — We Wear All Brands"></a>
     <nav class="nav">
-      <a href="#">Women</a>
-      <a href="#">Men</a>
-      <a href="#">Kids</a>
-      <a href="#">Brands</a>
-      <a href="#" class="sale">Sale</a>
+      <a href="#" onclick="return openWA('Women\'s Sneakers')">Women</a>
+      <a href="#" onclick="return openWA('Men\'s Sneakers')">Men</a>
+      <a href="#" onclick="return openWA('Kids\' Sneakers')">Kids</a>
+      <a href="#" onclick="return openWA('Brands available')">Brands</a>
+      <a href="#" class="sale" onclick="return openWA('Sale items')">Sale</a>
     </nav>
     <div class="icons">
       <button aria-label="Search"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
@@ -218,7 +241,7 @@ footer{margin-top:70px;background:#fff;border-top:1px solid var(--line)}
   </div>
 </header>
 <div class="mmenu" id="mmenu">
-  <a href="#">Women</a><a href="#">Men</a><a href="#">Kids</a><a href="#">Brands</a><a href="#" class="sale">Sale</a>
+  <a href="#" onclick="return openWA('Women\'s Sneakers')">Women</a><a href="#" onclick="return openWA('Men\'s Sneakers')">Men</a><a href="#" onclick="return openWA('Kids\' Sneakers')">Kids</a><a href="#" onclick="return openWA('Brands available')">Brands</a><a href="#" class="sale" onclick="return openWA('Sale items')">Sale</a>
 </div>
 
 <!-- hero -->
@@ -227,7 +250,7 @@ footer{margin-top:70px;background:#fff;border-top:1px solid var(--line)}
   <div class="wrap">
     <div class="eyebrow">New Season · 2026</div>
     <h1 class="display">We Wear<br><span class="it red">All Brands</span></h1>
-    <p>One destination for every label you love. Fresh fits, all your favourite brands, delivered across South Africa.</p>
+    <p>Sneakers, socks &amp; smartwatches from all your favourite brands, delivered across South Africa.</p>
     <div class="ctas">
       <a href="#new" class="cta primary">Shop New In</a>
       <a href="#cats" class="cta ghost">Shop by Category</a>
@@ -242,11 +265,11 @@ footer{margin-top:70px;background:#fff;border-top:1px solid var(--line)}
     <a href="#">View all</a>
   </div>
   <div class="cats">
-    <a class="cat big" href="#"><div class="ph" style="background-image:url('women-hero.jpg');background-size:cover;background-position:center 15%"></div><div class="lab"><b>Women</b><span class="go">Shop</span></div></a>
-    <a class="cat" href="#"><div class="ph" style="background-image:url('man-hero.jpg');background-size:cover;background-position:center 20%"></div><div class="lab"><b>Men</b><span class="go">Shop</span></div></a>
-    <a class="cat" href="#"><div class="ph" style="background-image:url('lac-hero.jpg');background-size:cover;background-position:center"></div><div class="lab"><b>Footwear</b><span class="go">Shop</span></div></a>
-    <a class="cat" href="#"><div class="ph" style="background-image:url('kid-hero.jpg');background-size:cover;background-position:center"></div><div class="lab"><b>Kids</b><span class="go">Shop</span></div></a>
-    <a class="cat" href="#"><div class="ph"></div><div class="lab"><b>Accessories</b><span class="go">Shop</span></div></a>
+    <a class="cat big" href="#" onclick="return openWA('Women\'s Sneakers')"><div class="ph" style="background-image:url('women-hero.jpg');background-size:cover;background-position:center 15%"></div><div class="lab"><b>Women</b><span class="go">Shop</span></div></a>
+    <a class="cat" href="#" onclick="return openWA('Men\'s Sneakers')"><div class="ph" style="background-image:url('man-hero.jpg');background-size:cover;background-position:center 20%"></div><div class="lab"><b>Men</b><span class="go">Shop</span></div></a>
+    <a class="cat" href="#" onclick="return openWA('Footwear')"><div class="ph" style="background-image:url('lac-hero.jpg');background-size:cover;background-position:center"></div><div class="lab"><b>Footwear</b><span class="go">Shop</span></div></a>
+    <a class="cat" href="#" onclick="return openWA('Kids\' Sneakers')"><div class="ph" style="background-image:url('kid-hero.jpg');background-size:cover;background-position:center"></div><div class="lab"><b>Kids</b><span class="go">Shop</span></div></a>
+    <a class="cat" href="#" onclick="return openWA('Socks and Smartwatches')"><div class="ph" style="background-image:url('accessories-hero.jpg');background-size:cover;background-position:center"></div><div class="lab"><b>Accessories</b><span class="go">Shop</span></div></a>
   </div>
 </div>
 
@@ -268,10 +291,10 @@ footer{margin-top:70px;background:#fff;border-top:1px solid var(--line)}
 <!-- promo split -->
 <div class="wrap">
   <div class="promo">
-    <a class="pcard sale" href="#">
+    <a class="pcard sale" href="#" onclick="return openWA('Sale items')">
       <div><div class="ey">Limited time</div><h3>Sale<br>up to 50% off</h3><span>Shop the sale →</span></div>
     </a>
-    <a class="pcard season" href="#">
+    <a class="pcard season" href="#" onclick="return openWA('New season sneakers')">
       <div><div class="ey">Just landed</div><h3>New season<br>essentials</h3><span>Discover now →</span></div>
     </a>
   </div>
@@ -281,10 +304,31 @@ footer{margin-top:70px;background:#fff;border-top:1px solid var(--line)}
 <div class="wrap">
   <div class="brands">
     <h2>Shop by brand</h2>
-    <p>We wear all brands — your favourite labels, all in one place. Brand logos coming soon.</p>
+    <p>Sneakers, socks &amp; smartwatches from the labels you love.</p>
     <div class="bchips">
-      <div class="bchip">Brand</div><div class="bchip">Brand</div><div class="bchip">Brand</div>
-      <div class="bchip">Brand</div><div class="bchip">Brand</div><div class="bchip">Brand</div>
+      <div class="bchip" onclick="openWA('Steve Madden sneakers')">Steve Madden</div>
+      <div class="bchip" onclick="openWA('Lacoste sneakers')">Lacoste</div>
+      <div class="bchip" onclick="openWA('Nike sneakers')">Nike</div>
+      <div class="bchip" onclick="openWA('Supreme sneakers')">Supreme</div>
+      <div class="bchip" onclick="openWA('WWAB socks')">WWAB Socks</div>
+      <div class="bchip" onclick="openWA('WWAB smartwatches')">WWAB Watches</div>
+    </div>
+  </div>
+</div>
+
+<!-- whatsapp cta -->
+<div class="wrap">
+  <div class="wa-banner">
+    <div class="slide"></div>
+    <div class="slide"></div>
+    <div class="inner">
+      <div class="wa-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.29-1.38a9.9 9.9 0 0 0 4.7 1.2h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2zm0 18.1h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.14.82.84-3.06-.2-.31a8.2 8.2 0 0 1-1.26-4.4c0-4.54 3.7-8.24 8.26-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.42 5.83c0 4.55-3.7 8.27-8.25 8.27zm4.52-6.19c-.25-.12-1.47-.72-1.69-.81-.23-.08-.4-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.43-.06-.12-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.57.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.28z"/></svg></div>
+      <h2>Join us on WhatsApp</h2>
+      <p>Chat to us directly for sizes, stock, and orders — sneakers, socks &amp; smartwatches.</p>
+      <div class="wa-nums">
+        <a class="wa-num" href="https://wa.me/27636110970?text=Hi!%20I%27d%20like%20to%20know%20more%20about%20WWAB." target="_blank" rel="noopener">063 611 0970</a>
+        <a class="wa-num" href="https://wa.me/27817613878?text=Hi!%20I%27d%20like%20to%20know%20more%20about%20WWAB." target="_blank" rel="noopener">081 761 3878</a>
+      </div>
     </div>
   </div>
 </div>
@@ -321,24 +365,37 @@ footer{margin-top:70px;background:#fff;border-top:1px solid var(--line)}
   </div>
 </footer>
 
+<a class="wa-float" href="https://wa.me/27636110970?text=Hi!%20I%27d%20like%20to%20know%20more%20about%20WWAB." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.29-1.38a9.9 9.9 0 0 0 4.7 1.2h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2zm0 18.1h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.14.82.84-3.06-.2-.31a8.2 8.2 0 0 1-1.26-4.4c0-4.54 3.7-8.24 8.26-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.42 5.83c0 4.55-3.7 8.27-8.25 8.27zm4.52-6.19c-.25-.12-1.47-.72-1.69-.81-.23-.08-.4-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.43-.06-.12-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.57.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
+</a>
+
 <script>
+// send any click straight to a WhatsApp chat, pre-filled with what the visitor tapped
+// (swap WA_NUMBER for the second line — 27817613878 — any time you'd rather that number take the clicks)
+var WA_NUMBER='27636110970';
+function openWA(item){
+  var msg=item?('Hi! I\'m interested in the '+item+' from WWAB.'):'Hi! I\'d like to know more about WWAB.';
+  window.open('https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(msg),'_blank');
+  return false;
+}
+
 // sample products (replace with your own later)
 var PRODUCTS=[
-  {brand:'WWAB',nm:'Oversized cotton tee',price:299,tag:'New'},
-  {brand:'WWAB',nm:'Relaxed cargo pants',price:599,old:799,tag:'Sale'},
-  {brand:'WWAB',nm:'Logo hoodie — red',price:649,tag:'New'},
-  {brand:'WWAB',nm:'Classic denim jacket',price:899},
-  {brand:'WWAB',nm:'Everyday sneakers',price:749,tag:'New'},
-  {brand:'WWAB',nm:'Knit beanie',price:199},
-  {brand:'WWAB',nm:'Track shorts',price:349,old:449,tag:'Sale'},
-  {brand:'WWAB',nm:'Crossbody bag',price:399}
+  {brand:'Steve Madden',nm:'Chunky Trainer Sneakers',price:1299,tag:'New',img:'sneaker-carry.jpg'},
+  {brand:'Lacoste',nm:'Court Runner Sneakers',price:1599,img:'lac-hero.jpg'},
+  {brand:'Nike',nm:'Air Max Sneakers — Pink',price:1899,tag:'New',img:'kid-hero.jpg'},
+  {brand:'Supreme x Nike',nm:'Dunk Low Sneakers',price:2499,old:2999,tag:'Sale',img:'man-hero.jpg'},
+  {brand:'WWAB',nm:'Ribbed Ankle Socks (3-pack)',price:149},
+  {brand:'WWAB',nm:'Crew Sport Socks (3-pack)',price:179,tag:'New'},
+  {brand:'WWAB',nm:'Smartwatch Pro',price:2199,tag:'New'},
+  {brand:'WWAB',nm:'Smartwatch Lite',price:1499,old:1799,tag:'Sale'}
 ];
 var R=function(n){return 'R'+Number(n).toLocaleString('en-ZA');};
 document.getElementById('pgrid').innerHTML=PRODUCTS.map(function(p){
-  return '<div class="prod"><div class="pimg">'
+  return '<div class="prod" onclick="openWA(\''+p.nm.replace(/'/g,"")+'\')"><div class="pimg"'+(p.img?' style="background-image:url(\''+p.img+'\');background-size:cover;background-position:center"':'')+'>'
     +(p.tag?'<span class="tag">'+p.tag+'</span>':'')
-    +'<button class="wish" aria-label="Wishlist"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0E0E10" stroke-width="2"><path d="M12 21s-8-4.5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6.5-8 11-8 11z"/></svg></button>'
-    +'<div class="phimg"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="M21 15l-5-5L5 21"/></svg></div>'
+    +'<button class="wish" aria-label="Wishlist" onclick="event.stopPropagation();this.classList.toggle(\'on\')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0E0E10" stroke-width="2"><path d="M12 21s-8-4.5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6.5-8 11-8 11z"/></svg></button>'
+    +(p.img?'':'<div class="phimg"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="M21 15l-5-5L5 21"/></svg></div>')
     +'</div><div class="pbody"><div class="brand">'+p.brand+'</div><div class="nm">'+p.nm+'</div>'
     +'<div class="price">'+R(p.price)+(p.old?'<s>'+R(p.old)+'</s>':'')+'</div></div></div>';
 }).join('');
