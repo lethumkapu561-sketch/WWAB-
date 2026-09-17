@@ -175,6 +175,24 @@ header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid 
 .wa-float svg{width:30px;height:30px}
 @media(max-width:560px){.wa-float{right:14px;bottom:14px;width:52px;height:52px}}
 
+/* founders */
+.founders{margin-top:64px}
+.founders .shead h2{margin:0}
+.fgrid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.fcard{position:relative;border-radius:10px;overflow:hidden;background:var(--ink);min-height:420px;display:flex;align-items:flex-end;isolation:isolate}
+.fcard .fph{position:absolute;inset:0;background-size:cover;background-position:center;z-index:-2;transition:transform .5s ease}
+.fcard:hover .fph{transform:scale(1.04)}
+.fcard::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(14,14,16,.94) 92%);z-index:-1}
+.fcard .fbody{position:relative;z-index:2;padding:26px 24px;color:#fff;width:100%}
+.fcard .frole{font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:8px}
+.fcard h3{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(24px,3.2vw,32px);line-height:1;margin-bottom:6px}
+.fcard .fmeta{font-size:12.5px;color:#c9c9cf;margin-bottom:12px;font-weight:600;letter-spacing:.03em}
+.fcard p.fbio{font-size:14px;color:#e4e4e8;max-width:44ch;line-height:1.5}
+@media(max-width:760px){
+  .fgrid2{grid-template-columns:1fr}
+  .fcard{min-height:360px}
+}
+
 /* footer */
 /* intro ad loader */
 #site-loader{position:fixed;inset:0;background:#000;z-index:999;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:opacity .6s ease}
@@ -403,6 +421,33 @@ footer{margin-top:70px;background:#fff;border-top:1px solid var(--line)}
   </div>
 </div>
 
+<!-- founders -->
+<div class="wrap founders" id="founders">
+  <div class="shead">
+    <h2>Meet the founders</h2>
+  </div>
+  <div class="fgrid2">
+    <div class="fcard">
+      <div class="fph" style="background-image:url('founder-thapelo.jpg')"></div>
+      <div class="fbody">
+        <div class="frole">Co-Founder</div>
+        <h3>Thapelo Mxuma</h3>
+        <div class="fmeta">Born 1 February 2001</div>
+        <p class="fbio">Co-founder of WWAB, building a one-stop home for sneakers, socks and smartwatches — all your favourite brands, delivered across South Africa.</p>
+      </div>
+    </div>
+    <div class="fcard">
+      <div class="fph" style="background-image:url('founder-wongalethu.jpg')"></div>
+      <div class="fbody">
+        <div class="frole">Co-Founder</div>
+        <h3>Wongalethu Mkapu</h3>
+        <div class="fmeta">Born 20 August 2000</div>
+        <p class="fbio">Co-founder of WWAB, driving the vision behind the brand and its digital presence — from the site you're browsing to what lands in stock next.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- footer -->
 <footer>
   <div class="wrap fgrid">
@@ -412,7 +457,7 @@ footer{margin-top:70px;background:#fff;border-top:1px solid var(--line)}
     </div>
     <div class="fcol"><h5>Shop</h5><a href="#">Women</a><a href="#">Men</a><a href="#">Kids</a><a href="#">Footwear</a><a href="#">Sale</a></div>
     <div class="fcol"><h5>Help</h5><a href="#">Delivery</a><a href="#">Returns</a><a href="#">Track order</a><a href="#">Size guide</a><a href="#">Contact us</a></div>
-    <div class="fcol"><h5>Connect</h5><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Facebook</a><a href="#">WhatsApp</a></div>
+    <div class="fcol"><h5>Connect</h5><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Facebook</a><a href="#">WhatsApp</a><a href="#founders">Meet the founders</a></div>
   </div>
   <div class="wrap fbottom">
     <span class="pay">Visa · Mastercard · Secure checkout</span>
